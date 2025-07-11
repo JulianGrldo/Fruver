@@ -221,6 +221,25 @@ function closeModal() {
     modal.classList.remove('flex');
 }
 
+// --- DELEGATED EVENT LISTENER FOR DYNAMIC CONTENT ---
+mainContent.addEventListener('click', (event) => {
+    // Busca si el clic fue en un botón de carrusel o un elemento dentro de él
+    const button = event.target.closest('.carousel-action-button');
+
+    if (button) {
+        const page = button.dataset.page;
+        let param = button.dataset.param;
+
+        if (page) {
+            // Convierte el parámetro a número si es necesario
+            if (param && !isNaN(param)) {
+                param = parseInt(param, 10);
+            }
+            navigateTo(page, param);
+        }
+    }
+});
+
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     navigateTo('home');

@@ -399,20 +399,26 @@ function renderCheckoutStep(step) {
     if (step === 4) return renderConfirmationStep();
 }
 
+// js/views.js
+
 function renderCarousel() {
     const slides = [
-        { img: 'https://placehold.co/1200x500/FBBF24/ffffff?text=Mango+Tommy', title: 'El Sabor de la Temporada: Mangos Tommy de Sopetrán', button: 'Comprar Ahora', onclick: `MapsTo('product', 1)` },
-        { img: 'https://placehold.co/1200x500/86EFAC/14532D?text=Familia+Feliz', title: 'Tu Frescura Semanal, Garantizada. Programa tu Canasta', button: 'Descubrir Canastas', onclick: `MapsTo('subscriptions')` },
-        { img: 'https://placehold.co/1200x500/22C55E/ffffff?text=Agricultor', title: 'Conoce a Quien Cultiva Tu Comida', button: 'Nuestros Aliados', onclick: `MapsTo('about')` }
+        // Se cambió 'onclick' por 'page' y 'param' para más claridad
+        { img: 'https://placehold.co/1200x500/FBBF24/ffffff?text=Mango+Tommy', title: 'El Sabor de la Temporada: Mangos Tommy de Sopetrán', button: 'Comprar Ahora', page: 'product', param: 1 },
+        { img: 'https://placehold.co/1200x500/86EFAC/14532D?text=Familia+Feliz', title: 'Tu Frescura Semanal, Garantizada. Programa tu Canasta', button: 'Descubrir Canastas', page: 'subscriptions' },
+        { img: 'https://placehold.co/1200x500/22C55E/ffffff?text=Agricultor', title: 'Conoce a Quien Cultiva Tu Comida', button: 'Nuestros Aliados', page: 'about' }
     ];
 
-    return slides.map((slide, index) => `
-        <div class="carousel-item ${index === 0 ? 'active' : ''}" data-index="${index}">
+    return slides.map((slide) => `
+        <div class="carousel-item active" data-index="${slide.index}">
             <img src="${slide.img}" class="w-full h-full object-cover absolute inset-0">
             <div class="absolute inset-0 bg-black bg-opacity-40"></div>
             <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center p-4">
                 <h2 class="text-3xl md:text-5xl font-bold mb-4">${slide.title}</h2>
-                <button onclick="${slide.onclick}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105">
+                <button 
+                    data-page="${slide.page}" 
+                    ${slide.param ? `data-param="${slide.param}"` : ''} 
+                    class="carousel-action-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105">
                     ${slide.button}
                 </button>
             </div>
