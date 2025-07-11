@@ -1,0 +1,34 @@
+/* Custom styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB; /* Light gray background */
+}
+.active-nav {
+    color: #2563EB; /* Blue-600 */
+    font-weight: 600;
+}
+.section-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.carousel-item {
+    display: none;
+    transition: opacity 1s ease-in-out;
+}
+.carousel-item.active {
+    display: block;
+}
+.product-card:hover .product-hover-buttons {
+    opacity: 1;
+    transform: translateY(0);
+}
+.product-hover-buttons {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.modal-backdrop {
+    background-color: rgba(0,0,0,0.5);
+}
